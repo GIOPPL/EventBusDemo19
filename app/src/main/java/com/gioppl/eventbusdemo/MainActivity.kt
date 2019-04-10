@@ -13,7 +13,8 @@ import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity() {
 
-    var tv_main:TextView?=null
+    @Suppress("PrivatePropertyName")
+    private var tv_main:TextView?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,10 +26,11 @@ class MainActivity : AppCompatActivity() {
         tv_main!!.text=messageEvent.message
     }
 
-
+    @Suppress("UNUSED_PARAMETER")
      fun sendEvent(view:View){
         EventBus.getDefault().post(MessageEvent("GIOPPL"))
     }
+    @Suppress("UNUSED_PARAMETER")
     fun activityClick(view:View){
         EventBus.getDefault().postSticky(MessageEvent("你好"))
         startActivity(Intent(this@MainActivity,ThreadActivity::class.java))
@@ -45,26 +47,27 @@ class MainActivity : AppCompatActivity() {
      * @time 2019/4/10
      * @author 17664
      */
+    @Suppress("UNUSED_PARAMETER")
     @Subscribe(threadMode = ThreadMode.POSTING)
     fun onPostingThreadEvent(event: MessageEvent) {
         Log.i("TEST", "POSTING --> I am on Thread " + Thread.currentThread().name)
     }
-
+    @Suppress("UNUSED_PARAMETER")
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMainThreadEvent(event: MessageEvent) {
         Log.i("TEST", "MAIN --> I am on Thread " + Thread.currentThread().name)
     }
-
+    @Suppress("UNUSED_PARAMETER")
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     fun onBackgroundThreadEvent(event: MessageEvent) {
         Log.i("TEST", "BACKGROUND --> I am on Thread " + Thread.currentThread().name)
     }
-
+    @Suppress("UNUSED_PARAMETER")
     @Subscribe(threadMode = ThreadMode.ASYNC)
     fun onAsyncThreadEvent(event: MessageEvent) {
         Log.i("TEST", "ASYNC --> I am on Thread " + Thread.currentThread().name)
     }
-
+    @Suppress("UNUSED_PARAMETER")
      fun threadClick(view: View){
         EventBus.getDefault().post(MessageEvent("发送 thread 消息，请看打印日志"))
 
@@ -78,16 +81,17 @@ class MainActivity : AppCompatActivity() {
      * @time 2019/4/10
      * @author 17664
     */
-     fun priorityClick(view:View){
+    @Suppress("UNUSED_PARAMETER")
+    fun priorityClick(view:View){
         EventBus.getDefault().post(MessageEvent("PRIORITY"))
     }
 
-
+    @Suppress("UNUSED_PARAMETER")
     @Subscribe(priority = 0) // 指定优先级为0，默认是0
     fun onLowPriorityEvent(event: MessageEvent) {
         Log.i("TEST", "onLowPriorityEvent")
     }
-
+    @Suppress("UNUSED_PARAMETER")
     @Subscribe(priority = 10) // 指定优先级为10
     fun onHighPriorityEvent(event: MessageEvent) {
         Log.i("TEST", "onHighPriorityEvent")

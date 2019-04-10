@@ -1,14 +1,11 @@
 package com.gioppl.eventbusdemo
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.TextView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 
 class ThreadActivity : AppCompatActivity() {
@@ -18,7 +15,8 @@ class ThreadActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
         textView=findViewById(R.id.textView)
     }
-
+    @SuppressLint("SetTextI18n")
+    @Suppress("UNUSED_PARAMETER")
     @Subscribe(sticky = true)
     fun onStickyEvent(event: MessageEvent) {
         textView!!.text="从上一个界面里传出来"+event.message
